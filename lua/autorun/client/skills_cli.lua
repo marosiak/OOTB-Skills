@@ -14,8 +14,9 @@ if CLIENT then
             surface.DrawTexturedRect(x * -1, y * -1, scrW, scrH)
         end
     end
-    -- if SkillsFrame then SkillsFrame:Remove() end 
-    local SkillsFrame = vgui.Create( "DFrame" )
+    if SkillsFrame then SkillsFrame:Remove() end 
+    SkillsFrame = vgui.Create( "DFrame" )
+    
     SkillsFrame:SetPos( 5, 5 )
     SkillsFrame:SetSize( 650, 550 ) 
     SkillsFrame:SetTitle( "Name window" )
@@ -51,9 +52,9 @@ if CLIENT then
         SkillsFrame.layout:Add( Delegate )
     end
 
-    local function loadData(table)
-        SkillsFrame.layout:Clear() 
-        for i, v in pairs(table) do  
+    local function loadData(tab)
+        SkillsFrame.layout:Clear()
+        for i, v in SortedPairs(tab) do  
             local Delegate = vgui.Create("DPanel")  
             Delegate:SetSize(20,100) 
             function Delegate:Paint(w,h)

@@ -1,7 +1,7 @@
 AddCSLuaFile()
 AddCSLuaFile("skills_cli.lua")
 AddCSLuaFile("skillsConfig.lua")
-AddCSLuaFile("skillsShared.lua")
+AddCSLuaFile("skillsShared.lua") 
 include("skillsConfig.lua")
 include("skillsShared.lua")  
 util.AddNetworkString( "loadSkills" ) -- srv
@@ -9,7 +9,6 @@ util.AddNetworkString( "refreshSkills" ) -- cli
 
 local function saveSkillsTable(ply, tab)
     if not file.Exists( SkillsConfig.General.dataFolder.."/".."TEST"..".dat", "DATA" ) then file.CreateDir(SkillsConfig.General.dataFolder)  end
-    table.SortByMember(tab, "name", true)
     file.Write(SkillsConfig.General.dataFolder.."/".."TEST"..".dat",util.TableToJSON(tab, true))
 end
 
@@ -55,8 +54,6 @@ local function loadSkillsTable(ply)
         end 
     end
     if forceSave then saveSkillsTable(ply, tab) end
-
-    table.SortByMember(tab, "name", true)
     return tab
 end
  
